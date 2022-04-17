@@ -389,6 +389,8 @@ function removeFoodTokens(){
 }
 
 
+//show and hide extras in the purchase form
+
 document.getElementById("extra_items").style.display = "none"; 
 
 function showHide() {
@@ -402,7 +404,7 @@ function showHide() {
 
 
 
-//delete entire table values values and reset to blank
+//delete entire table values values and reset to blank when user clicks place order button
 document.getElementById("placeOrder").onclick = function(){
   var overallOrder = parseFloat(document.getElementById("overallGtotal").innerHTML);
   if(overallOrder != 0){
@@ -443,7 +445,7 @@ frmDate.setAttribute("min",maxDate)
 
 
 
-// Local storage functions to save form data and refil when user click the retrireve from favourite button
+// Local storage functions to save form data and refil when user click the add to favourite button
 
 
 const formId = "frmPurchase"; // ID of the form
@@ -494,7 +496,7 @@ const displayAlert = message => {
 
 
 /**
- * This function refill the favourte order
+ * This function refill the favourte order when user clicks order favourite button
  * with data from localStorage
  *
  */
