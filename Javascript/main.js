@@ -99,11 +99,6 @@ if(noOfAdults || noOfChildren != 0){
   
 }
 
-
-
-
-
-
   if(duration != "" && choice == ""){
       alert("Please select the choice first");
       document.getElementById("cmbDuratiom").focus();
@@ -209,7 +204,7 @@ document.getElementById("AddOrder").onclick = function(){
       
 var cost = parseFloat(document.getElementById("spCost").innerHTML);
   if(cost == 0){
-      alert("Please select your choice and no of tickets");
+      alert("You cannot place an order without any items in the current order. Please add one or more items to continue.");
       return;
   }
 
@@ -288,32 +283,34 @@ var cost = parseFloat(document.getElementById("spCost").innerHTML);
     td6.style = "text-align:right";
 
     td7 = trow.insertCell(6);
-    td7.innerHTML = "<a href='javascript:void(0)' style='color:red;font-weight:bold' onclick='removeRecord(this.parentElement);'>X</a>";
+    td7.innerHTML = "<a href='javascript:void(0)' style='color:red;font-weight:bold' onclick='removeRecord(this.parentElement);'> <img src ='images/trash-bin.png' id ='trashBin' alt ='trashbin' > </a>";
 
   }
   
 
   total_ftokens = total_ftokens + foodTokens;
   document.getElementById("thFtokens").innerHTML = total_ftokens.toFixed(2);
-  document.getElementById("thFtokens").style = "text-align:center"
+  document.getElementById("thFtokens").style = "text-align:center";
 
   grand_token = grand_token + ticketApp.ft_cost;
   document.getElementById("pthFtokens").innerHTML = grand_token.toFixed(2);
-  document.getElementById("pthFtokens").style = "text-align:right"
+  document.getElementById("pthFtokens").style = "text-align:right";
 
   total_apasses = total_apasses + annualPasses;
   document.getElementById("thApasses").innerHTML = total_apasses.toFixed(2);
-  document.getElementById("thApasses").style = "text-align:center"
+  document.getElementById("thApasses").style = "text-align:center";
 
   grand_passes = grand_passes + ticketApp.ap_cost;
   document.getElementById("pthApasses").innerHTML = grand_passes.toFixed(2);
-  document.getElementById("pthApasses").style = "text-align:right"
-
-  grand_total = grand_total + total + grand_token + grand_passes ;
+  document.getElementById("pthApasses").style = "text-align:right";
+  
+  grand_total = grand_total + ticketApp.spCost;
   document.getElementById("thGrandTot").innerHTML = grand_total.toFixed(2);
-  document.getElementById("thGrandTot").style = "text-align:center"
+  document.getElementById("thGrandTot").style = "text-align:center";
 
   document.getElementById("spCost").innerHTML = grand_total.toFixed(2);
+
+  document.getElementById("overallGtotal").innerHTML = grand_total.toFixed(2);
 
 
   resetPurchaseForm();
@@ -340,6 +337,7 @@ function removeRecord(item){
       var total = parseFloat(item.parentElement.cells[5].innerHTML);
       grand_total = grand_total - total;
       document.getElementById("thGrandTot").innerHTML = grand_total.toFixed(2);
+      document.getElementById("overallGtotal").innerHTML = grand_total.toFixed(2);
       table.deleteRow(item.parentElement.rowIndex);
   }
  
@@ -348,7 +346,7 @@ function removeRecord(item){
 
 // function to remove all the annual passes added to the order summary.
 function removeAnuualPasses(){
-  var result = confirm("Do you want to remove all annual passes?");
+  var result = confirm("Do you want to remove all annual passes? You can always add more later if necessary.");
   
   if(result == true){
     var tpannualPasses = parseFloat( document.getElementById("pthApasses").innerHTML);
@@ -356,6 +354,7 @@ function removeAnuualPasses(){
     var grand_total = parseFloat(document.getElementById("thGrandTot").innerHTML);
     grand_total = grand_total -tpannualPasses;
     document.getElementById("thGrandTot").innerHTML = grand_total.toFixed(2);
+    document.getElementById("overallGtotal").innerHTML = grand_total.toFixed(2);
     tpannualPasses = 0;
     tannualPasses = 0;
 
@@ -369,7 +368,7 @@ function removeAnuualPasses(){
 
 // function to remove all the food tokens added to the order summary.
 function removeFoodTokens(){
-  var result = confirm("Do you want to remove all food tokens?");
+  var result = confirm("Do you want to remove all food tokens? You can always add more later if necessary.");
   
   if(result == true){
     var tpfoodTokens = parseFloat( document.getElementById("pthFtokens").innerHTML);
@@ -377,6 +376,7 @@ function removeFoodTokens(){
     var grand_total = parseFloat(document.getElementById("thGrandTot").innerHTML);
     grand_total = grand_total -tpfoodTokens;
     document.getElementById("thGrandTot").innerHTML = grand_total.toFixed(2);
+    document.getElementById("overallGtotal").innerHTML = grand_total.toFixed(2);
     tpfoodTokens = 0;
     tfoodTokens = 0;
 
@@ -389,15 +389,33 @@ function removeFoodTokens(){
 }
 
 
+document.getElementById("extra_items").style.display = "none"; 
+
+function showHide() {
+  var x = document.getElementById("extra_items");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+
+
+
 //delete entire table values values and reset to blank
 document.getElementById("placeOrder").onclick = function(){
+  var overallOrder = parseFloat(document.getElementById("overallGtotal").innerHTML);
+  if(overallOrder != 0){
   var Table = document.getElementById("tbody_order");
-  var grandTotal = document.getElementById("thGrandTot");
+  document.getElementById("thGrandTot").innerHTML = "0.00";
+  document.getElementById("overallGtotal").innerHTML = "0.00";
   Table.innerHTML = "";
-  grandTotal.innerHTML = "0.00";
- // document.getElementById("tbl_order").style = "display: none;"
- alert("Thank you")
-
+  document.getElementById("tbl_order").style = "display: none;"
+  alert("Thank you for your interest in purchasing our tickets or additional items We look forward to seeing you again soon.")
+  }
+  else{
+    alert("You cannot place an order without any items in the overall order. Please add one or more items to continue.")
+  }
 }
 
 
@@ -418,8 +436,10 @@ if(tdate < 10){
 var maxDate = year + "-" + month  + "-" + tdate;
 // Fill in today's date on the form. 
 document.getElementById("date").value = maxDate;
-//Prevent the user from entering an earlier invalid date.
+//Prevent the user from entering an earlier invalid date.| restrct user to book tickets on a past date
 frmDate.setAttribute("min",maxDate)
+
+
 
 
 
@@ -488,6 +508,7 @@ const displayAlert = message => {
     }
     const message = "Form has been refilled with saved data!";
     displayAlert(message);
+    document.getElementById("extra_items").style.display = "block"; 
   }
 };
 
@@ -543,21 +564,24 @@ function showLoyaltyPoints(){
 //--------------------------------------------------------------------------
 
 
-
+//Input validations for the donate form
 function inputValidation(){
     var name = document.getElementById("name").value;
-    var comment = document.getElementById("comment").value;
     var email = document.getElementById("email").value;
     var address = document.getElementById("address").value;
     var cardNumber = document.getElementById("cardNum").value;
     var pinNumber = document.getElementById("cvv").value;
+    var cardholderName = document.getElementById("cardHolder").value;
+    var mothInput = document.getElementById("monthInput").value;
+    var yearInput = document.getElementById("yearInput").value;
+    var fixedDonatons = document.getElementById("fixedDonatons").value;
 
     var email_pattern = /^[A-Za-z\d\.\_]+\@[A-Za-z\d\.\-]+\.[A-Za-z]{2,5}$/;
-    var name_pattern = /^[A-Za-z\s\.]{2,}$/;
-    var comment_pattern = /^[A-Za-z\s\.]{2,}$/;
+    var name_pattern = /^\b(?!.*\.{2})[a-zA-Z.]+(?:\s[a-zA-Z.]+)\b$/;
     var addr_pattern = /^[A-Za-z\d\.\-\/\#\,\s]+$/;
     var card_pattern = /^[0-9]{16,16}$/;
     var pin_pattern = /^[0-9]{3,3}$/;
+    var holder_pattern = /^\b(?!.*\.{2})[a-zA-Z.]+(?:\s[a-zA-Z.]+)\b$/;
 
 
     
@@ -578,30 +602,64 @@ function inputValidation(){
 
   if(!address.match(addr_pattern)){
       alert("Please enter a valid address");
-      document.getElementById("txtadd").focus();
+      document.getElementById("address").focus();
       return false;
   }
 
-if(!cardNumber.match(card_pattern)){
-    alert("Please enter a valid cardnumber");
+  if(fixedDonatons == ""){
+    alert("Please select the donation amout");
+    return;
+  }
+
+  if(!cardNumber.match(card_pattern)){
+      alert("Please enter a valid cardnumber");
+      document.getElementById("cardNum").focus();
+      return false;
+  }
+
+  if(!cardholderName.match(holder_pattern)){
+      
+    alert("Please enter a valid cardholder name");
+    document.getElementById("card-holder").focus();
+    return false;
+  }
+
+  if(!pinNumber.match(pin_pattern)){
+    alert("Please enter a valid pin number(cvv)");
     document.getElementById("txtadd").focus();
     return false;
-}
+  }
 
-if(!pinNumber.match(pin_pattern)){
-  alert("Please enter a valid pin number");
-  document.getElementById("txtadd").focus();
-  return false;
-}
+
+  if(mothInput == ""){
+    alert("Please select expiration month of your credit/debit card");
+    document.getElementById("monthInput").focus();
+    return;
+  }
+
+  if(yearInput == ""){
+    alert("Please select the expiration year of your credit/debit card");
+    document.getElementById("yearInput").focus(); 
+    return;
+  }
+
+  alert("Thank you so much for your contribution! The receipt will be sent to your email address.")
+
+  clearDonatiom();
   
-
-if(!comment.match(comment_pattern)){
-  alert("Please enter a valid pin number");
-  document.getElementById("txtadd").focus();
-  return false;
 }
 
-}
+// clear form after click the Donate button
+function clearDonatiom(){
+  const inputs = document.querySelectorAll('#name, #email, #address, #fixedDonatons, #comment, #cardNum, #cardHolder, #monthInput, #yearInput, #cvv');
+
+  inputs.forEach(input => {
+    input.value = '';
+  });
+};
+
+
+
 
 // fixed donation amounts that are customized and multi-selectable.
 class CustomSelect {

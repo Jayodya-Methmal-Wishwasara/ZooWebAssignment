@@ -116,7 +116,7 @@
 
 
         
-            <div class="booking-form">
+            <div class="booking-form" id="boxform">
                 <form action="" class="contact-col frmtickets" id="frmPurchase">
                    
                     
@@ -140,10 +140,10 @@
                     
                     <div class="flexbox" id="ticket-amounts">
                         <div class="inputBox">  
-                        <input id="noOfAdult" name="noOfAdult" type="number" placeholder="Enter Number of Adults" onblur="calculateCost();">
+                        <input id="noOfAdult" name="noOfAdult" min="0" type="number" placeholder="Enter Number of Adults" onblur="calculateCost();">
                         </div>
                         <div class="inputBox">
-                            <input id="noOfChild" name="noOfChild" type="number" placeholder="Enter Number of Children" onblur="calculateCost();">
+                            <input id="noOfChild" name="noOfChild" min="0" type="number" placeholder="Enter Number of Children" onblur="calculateCost();">
                         </div>
                     </div>
                     <label for="date" class="lbdate">-Input the check-in date for your tickets.-</label>
@@ -151,25 +151,25 @@
                         <input type="date" id="date"  name="date">
                     </div>
 
-                    
-                    <div class="flexbox" id="extra_items"  >
+                    <label for="date" class=""><a href="javascript:void(0)" class=" showHide" onclick='showHide();' >Show/Hide Extra Items</a> </label>
+                    <div id="extra_items">
+                    <div class="flexbox"  >
                         <div class="inputBox">
                             <label for="noOfPasses"></label>
-                            <input id="noOfPasses" name="noOfPasses" type="number" placeholder="Enter Number of Passes" onblur="calculateCost();" >
+                            <input id="noOfPasses" name="noOfPasses" min="0" type="number" placeholder="Enter Number of Passes" onblur="calculateCost();" >
                         </div>
                         <div class="inputBox">
-                            <input id="noOfTokens" name="noOfTokens" type="number" placeholder="Enter Number of Tokens" onblur="calculateCost();">
+                            <input id="noOfTokens" name="noOfTokens" min="0" type="number" placeholder="Enter Number of Tokens" onblur="calculateCost();">
                         </div>
                     </div>
+                     </div>
                     <div class="alert" style="display: none;"></div>
-                    <p>Cost of the current order : LKR <span id="spCost">0.00</span></p>
+                    <p id="crrntOrder">Cost of the current order : LKR <span id="spCost">0.00</span></p>
                     <div class="" id="localStorage">
-                        <input  id="addFavourite" type="button" value="Save favourite" class="">
-                        <input id="retriveFavourite" type="button" value="Retrieve favourite" class="">
+                        <input  id="addFavourite" type="button" value="Add to favourites" class="">
+                        <input id="retriveFavourite" type="button" value="Order favourite" class="">
                     </div>
                         
-                    
-                     
                     
                     <input id="AddOrder" type="button" value="Add to Order" class="submit-btn">
 
@@ -192,13 +192,13 @@
                                     <th colspan="4">Food Tokens</th>
                                     <th colspan="1" id="thFtokens">0</th>
                                     <th colspan="1" id="pthFtokens">0.00</th>
-                                    <th colspan="1"><a href='javascript:void(0)' style='color:red;font-weight:bold' onclick='removeFoodTokens();'>X</a></th>
+                                    <th colspan="1"><a href='javascript:void(0)' style='color:red;font-weight:bold' onclick='removeFoodTokens();'><img src ='images/trash-bin.png' id ='trashBin' alt ='trashbin' ></a></th>
                                 </tr>
                                 <tr id="">
                                     <th colspan="4">Annual Passes</th>
                                     <th colspan="1" id="thApasses">0</th>
                                     <th colspan="1" id="pthApasses">0.00</th>
-                                    <th colspan="1"><a href='javascript:void(0)' style='color:red;font-weight:bold' onclick='removeAnuualPasses();'>X</a></th>
+                                    <th colspan="1"><a href='javascript:void(0)' style='color:red;font-weight:bold' onclick='removeAnuualPasses();'><img src ='images/trash-bin.png' id ='trashBin' alt ='trashbin' ></a></th>
                                 </tr>
                                 <tr id="table_divider-final">
                                     <th colspan="4">Grand Total</th>
@@ -208,10 +208,9 @@
                             </tfoot>
                     </table>
                     </div>
-                   
+
                     <input id="checkLoyality" type="button" value="Check Loyality" class="submit-btn" onclick="showLoyaltyPoints();">
-                
-                    
+                    <p>Cost of the Overall order : LKR <span id="overallGtotal">0.00</span></p>
                     <input id="placeOrder" type="button" value="Place Order" class="submit-btn">
                     
                 </form>
@@ -272,7 +271,7 @@
             </div>
 
             <div class="donation-form">
-                <form action="" class="contact-col" id="" onsubmit="inputValidation();">
+                <form action="" class="contact-col" id="frmDonation">
                     <input type="text" id="name" placeholder="Enter your name" required>
                     <input type="email" id="email" placeholder="Enter your email" required >
                     <textarea  rows="3" id="address" placeholder="Enter your address" required ></textarea>
@@ -289,21 +288,21 @@
                     
                 </form>
 
-                <form class="" action=""  method="post" >
+                <form class="paymentDetails" action=""  method="post" >
                     <div class="inputBox">
                         <span>Card number</span>
                         <input type="text" id="cardNum" maxlength="16" class="card-number-input">
                     </div>
                     <div class="inputBox">
                         <span>Card holder</span>
-                        <input type="text" id="pin" class="card-holder-input">
+                        <input type="text" id="cardHolder" class="card-holder-input">
                     </div>
 
                     
                     <div class="flexbox">
                         <div class="inputBox" >
                             <span>expiration mm</span>
-                            <select name="" id="" class="month-input">
+                            <select name="" id="monthInput" class="month-input">
                                 <option value="month" selected disabled>Month</option>
                                 <option value="01">01</option>
                                 <option value="02">02</option>
@@ -321,9 +320,8 @@
                         </div>
                         <div class="inputBox">
                             <span>expiration yy</span>
-                            <select name="" id="" class="year-input" onselect="inputValidatiom()">
+                            <select name="" id="yearInput" class="year-input" onselect="inputValidatiom()">
                                 <option value="year" selected disabled>Year</option>
-                                <option value="2021">2021</option>
                                 <option value="2022">2022</option>
                                 <option value="2023">2023</option>  
                                 <option value="2024">2024</option>
@@ -340,7 +338,7 @@
                             <input type="text" id="cvv" maxlength="3" class="cvv-input" >
                         </div>
                     </div>
-                    <input type="button" value="Donate" class="submit-btn" onclick="inputValidation();">
+                    <input type="button" value="Donate" id="donateBtn" class="submit-btn" onclick="inputValidation();">
                 </form>
 
 

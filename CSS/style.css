@@ -1263,6 +1263,9 @@ td, th {
     
 }
 
+
+
+
 .ticket_booking h1{
    text-align: center;
    padding-top: 30px;
@@ -1292,6 +1295,7 @@ td, th {
     
 
 }
+
 .ticket-purchase{
     width: 100%;
     border-radius: 25px;
@@ -1407,6 +1411,8 @@ td, th {
 
 /*---------------------------------------Ticket Booking form--------------------------------------------------*/
 
+
+
 .booking-form{
     background-color: rgba(195, 255, 195, 0.075);
     border-radius: 30px;
@@ -1448,7 +1454,7 @@ td, th {
 .booking-form form{
     margin: auto;
     padding: 0px;
-    width: 65%;
+    width: 75%;
 
 }
 .booking-form  form .inputBox{
@@ -1479,6 +1485,9 @@ td, th {
     color:#444;
 }
 
+.booking-form form .inputBox select{
+    padding: 2px;
+}
 .booking-form  form .flexbox{
     display: flex;
     gap:15px;
@@ -1519,7 +1528,7 @@ td, th {
     padding-bottom: 5px;
     width: 100%;
     text-align: center;
-    font-size: 18px;
+    font-size: 20.5px;
 }
 
 #extra_items{
@@ -1610,6 +1619,57 @@ td, th {
 
 #checkLoyality{
     margin-bottom: 20px;
+}
+
+
+.showHide:link, a:visited {
+    background-color:#009578;
+    color: white;
+    width: 99%;
+    padding-top: 6px;
+    font-size: 18px;
+    padding-bottom: 6px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border: #000000 solid 1px;
+    border-radius: 10px;
+  }
+  
+  .showHide:hover, a:active {
+    background-color: #0095771a;
+    color: #009578;
+  }
+
+  #crrntOrder{
+      margin-top: 15px;
+  }
+
+  .alert{
+      text-align: center;
+      width: 90%;
+      padding: 3px;
+      margin-top: 30px;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 20px;
+      border: #009578 3px  solid;
+      border-radius: 20px;
+      outline-width: 3px;
+      outline-color: #009578;
+      opacity: 80%;
+      
+
+  }
+
+#trashBin{
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+    max-height: 30px;
+    max-width: 30px;
+    position: relative;
+    display: block;
 }
 
 
@@ -1761,6 +1821,14 @@ td, th {
 }
 
 
+#frmDonation{
+    width: 80%;
+}
+
+
+.paymentDetails{
+    width: 80%;
+}
 
 /*-----------------------------------------------Card Payment details------------------------------------------------------*/
 
@@ -1834,6 +1902,8 @@ td, th {
     letter-spacing: 2px;
     opacity: .8;
 }
+
+
 
 
 
@@ -1949,7 +2019,13 @@ ul li {
 
 
 
+@media only screen and (min-device-width: 1025px) and (max-device-width: 1556px) and (orientation : portrait) {
 
+  #divOrder{
+    overflow: scroll;
+}  
+
+}
 
 
 
@@ -2170,6 +2246,7 @@ ul li {
 }
 
 .donation-form{
+    width: 85%;
     padding-right: 5px;
     padding-left: 5px;
     padding-top: 5px;
@@ -2229,6 +2306,8 @@ ul li {
 #cvvInput {
     width: 92%;
 }
+
+
 
 
 /*------------------------------footer-----------------------------------*/
