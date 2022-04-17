@@ -1622,7 +1622,7 @@ td, th {
 }
 
 
-.showHide:link, a:visited {
+.showHide:link, .showHide:visited {
     background-color:#009578;
     color: white;
     width: 99%;
@@ -1636,7 +1636,7 @@ td, th {
     border-radius: 10px;
   }
   
-  .showHide:hover, a:active {
+  .showHide:hover, .showHide:active {
     background-color: #0095771a;
     color: #009578;
   }
