@@ -329,6 +329,10 @@ mark {
 
 }
 
+.plantsTable{
+    width: 80%;
+}
+
 .plants-animals h1{
     color: rgb(15, 14, 14);
     font-size: 45px;
@@ -1645,10 +1649,15 @@ td, th {
       margin-top: 15px;
   }
 
+
+  #overallOrder , #crrntOrder {
+    font-style:initial;
+  }
+
   .alert{
       text-align: center;
-      width: 90%;
-      padding: 3px;
+      width: 100%;
+      padding: 8px;
       margin-top: 30px;
       margin-left: auto;
       margin-right: auto;
@@ -1767,6 +1776,7 @@ td, th {
     border-radius: 3px;
     background: #ffffff;
     transition:1s;
+    border: #047016 solid;
   }
 
 
@@ -2413,12 +2423,57 @@ footer .container .about-dehiwala-zoo{
         
         
     }
+
+    .plantsTable table, .plantsTable tr , .plantsTable th, .plantsTable td  { 
+		display: block; 
+	}
+    
+    .table-headings{
+        display: none;
+    }
+
+    
 	
-	.types-of-animals table tr td:nth-of-type(1):before { content: "Name"; }
-	.types-of-animals table tr td:nth-of-type(2):before { content: "Description"; }
-	.types-of-animals table tr td:nth-of-type(3):before { content: "Image"; }
-	.types-of-animals table tr td:nth-of-type(4):before { content: "Benefits"; }
-	.types-of-animals table tr td:nth-of-type(5):before { content: "Features"; }
+	.plantsTable tr { 
+		margin-bottom: 10px;
+	}
+	
+	.plantsTable tr, .plantsTable { 
+        border: 1px solid #ccc; 
+    }
+	
+	.plantsTable td { 
+		
+		border: none;
+		border-bottom: 1px solid #eee; 
+		position: relative;
+		padding-left: 50%; 
+	}
+	
+	.plantsTable td:before { 
+		position: absolute;
+		top: 6px;
+		left: 6px;
+		width: 45%; 
+		padding-right: 10px; 
+		white-space: nowrap;
+	}
+
+    .plantsTable  tr td img{
+        border-radius: 20px;
+        width: 100%;
+        object-fit: cover;
+        
+        
+        
+    }
+
+	
+	.plantsTable tr td:nth-of-type(1):before { content: "Name"; }
+	.plantsTable tr td:nth-of-type(2):before { content: "Description"; }
+	.plantsTable tr td:nth-of-type(3):before { content: "Image"; }
+	.plantsTable tr td:nth-of-type(4):before { content: "Benefits"; }
+	.plantsTable tr td:nth-of-type(5):before { content: "Features"; }
 
 
 
