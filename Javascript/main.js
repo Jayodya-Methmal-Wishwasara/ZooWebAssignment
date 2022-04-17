@@ -65,11 +65,7 @@ function calculateCost() {
 
   var cost = 0;
   
-
   var choice = document.getElementById("cmbChoice").value;
- 
-
-
   var duration = document.getElementById("cmbDuratiom").value;
   var noOfAdults = document.getElementById("noOfAdult").value;
   var noOfChildren = document.getElementById("noOfChild").value;
@@ -79,9 +75,6 @@ function calculateCost() {
  
 
 if(noOfAdults || noOfChildren != 0){
-
-
-  
 
   if(choice == ""){
     alert("Please select your choice");
@@ -95,8 +88,6 @@ if(noOfAdults || noOfChildren != 0){
     return;
   }
 
-  
-  
 }
 
   if(duration != "" && choice == ""){
@@ -195,14 +186,12 @@ if(noOfAdults || noOfChildren != 0){
 
 document.getElementById("AddOrder").onclick = function(){
 
+  
   if(ticketApp.spCost>0){
     document.getElementById("tbl_order").style = "display: inlineblock;"
-}
+  }
 
-
-
-      
-var cost = parseFloat(document.getElementById("spCost").innerHTML);
+  var cost = parseFloat(document.getElementById("spCost").innerHTML);
   if(cost == 0){
       alert("You cannot place an order without any items in the current order. Please add one or more items to continue.");
       return;
@@ -252,9 +241,8 @@ var cost = parseFloat(document.getElementById("spCost").innerHTML);
   
   var tbody = document.getElementById("tbody_order");
 
-  if(ticketApp.no_of_adults>0 || ticketApp.no_of_children>0){
 
-    
+  if(ticketApp.no_of_adults>0 || ticketApp.no_of_children>0){
 
     var trow = tbody.insertRow(-1)
 
@@ -514,8 +502,8 @@ const displayAlert = message => {
   }
 };
 
-// auto refill the form when the retreive favourite button is clicked
 
+// auto refill the form when the retreive favourite button is clicked
 retrieveButton.onclick = function(){
     formautoRefill(); 
     calculateCost();
@@ -537,7 +525,6 @@ function calcLoyaltyPoints(){
  
   
   totalTicket = totalTicket + ticketApp.no_of_adults + ticketApp.no_of_children;
-  alert(totalTicket);
   if(totalTicket > 3){
       loyaltyPoints = 20 * totalTicket;
       grand_loyaltyPoints = grand_loyaltyPoints + loyaltyPoints; 
