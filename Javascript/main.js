@@ -401,7 +401,7 @@ document.getElementById("placeOrder").onclick = function(){
   document.getElementById("overallGtotal").innerHTML = "0.00";
   Table.innerHTML = "";
   document.getElementById("tbl_order").style = "display: none;"
-  alert("Thank you for your interest in purchasing our tickets or additional items We look forward to seeing you again soon.")
+  alert("Thank you for your purchase of tickets or additional items. We look forward to seeing you again soon.")
   }
   else{
     alert("You cannot place an order without any items in the overall order. Please add one or more items to continue.")
