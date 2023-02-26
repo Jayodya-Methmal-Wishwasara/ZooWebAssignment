@@ -784,10 +784,7 @@ nav .dz-close-r{
     scrollbar-width: none;  
   }
 
-.animals-col:hover{
-    transform: translateY(-15px);
-    scale: 1.2;
-}
+
 
 .animals-col-img{
     position: relative;
